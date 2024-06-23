@@ -1,0 +1,51 @@
+.drag-icon {
+    transform: scale(1.5);
+}
+
+.serial-number {
+    margin-left: 4px;
+    font-size: larger;
+}
+
+.product-row {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+}
+
+
+.product-textarea {
+    transform: scale(0.8);
+    width: 300px;
+}
+
+.text-area {
+    width: 300px;
+}
+
+.edit-icon {
+    transform: scale(1.5);
+
+}
+
+.discount-fields{
+    display: flex;
+    align-items: center;
+}
+
+.discount-input {
+    width: 80px;
+    transform: scale(0.8);
+}
+
+.discount-select {
+    width: 100px;
+    transform: scale(0.8);
+}
+
+.show-variant-button {
+    margin-left: 350px;
+    color: blue;
+    font-style: italic;
+    border-bottom: 1px solid blue;
+}

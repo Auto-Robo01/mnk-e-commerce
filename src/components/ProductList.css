@@ -1,0 +1,19 @@
+.product-list-component {
+    margin-top: 20px;
+   
+}
+
+.product-list-header {
+    margin-left: 60px;
+    display: flex;
+    font-weight: bold;
+
+}
+
+.product-column {
+    width: 300px;
+}
+
+.add-product-btn {
+    margin-left: 350px;
+}

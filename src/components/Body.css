@@ -1,0 +1,14 @@
+.content {
+    margin-left: 300px;
+    margin-top: 100px;
+    padding: 10px;
+}
+
+.add-product-heading {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.product-list-section {
+    padding: 10px;
+}

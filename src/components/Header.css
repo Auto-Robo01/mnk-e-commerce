@@ -1,0 +1,13 @@
+.header {
+    border-bottom: 1px solid darkgray;
+    padding: 2px;
+    margin: 2px;
+    font-size: large;
+    display: flex;
+    align-items: center;
+}
+
+.header-img {
+    width: 30px;
+    margin: 6px;
+}
