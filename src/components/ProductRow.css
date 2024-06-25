@@ -48,4 +48,15 @@
     color: blue;
     font-style: italic;
     border-bottom: 1px solid blue;
+    font-size: small;
+    cursor: pointer;
+}
+
+.remove-product-icon {
+    margin-left: 20px;
+}
+
+.variants {
+    margin-left: 20px;
+    margin-top: -15px;
 }

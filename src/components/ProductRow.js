@@ -6,8 +6,10 @@ import { MdEdit } from "react-icons/md";
 import ProductDialog from './ProductDialog';
 import { AiOutlineClose } from "react-icons/ai";
 import ProductRowContainer from './ProductRowContainer';
+import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineUp } from "react-icons/ai";
 
-const ProductRow = ({dragHandleProps, index, content, id, addData, variants}) => {
+const ProductRow = ({dragHandleProps, index, content, id, addData, variants, removeRow, isVariant, handleOnDragEnd, rows}) => {
     const [openDialog, setOpenDialog] = useState(false)
     const [showDiscountFields, setShowDiscountFields] = useState(false)
     const [discountType, setDiscountType] = useState('% off')
@@ -34,16 +36,20 @@ const ProductRow = ({dragHandleProps, index, content, id, addData, variants}) =>
         setShowVariants(!showVariant)
     }
 
+    const handleRemoveRow = () => {
+        removeRow(index, isVariant, id)
+    }
 
   return (
     <div>
+        
         <div className='product-row'>
             <div className='drag-icon'  {...dragHandleProps}>
                 <MdDragIndicator />
             </div>
-            <div className='serial-number'>
+            {!isVariant && <div className='serial-number'>
                 {index+1}
-            </div>
+            </div>}
             <div className='product-textarea'>
             <TextField
                     className='text-area'
@@ -74,17 +80,20 @@ const ProductRow = ({dragHandleProps, index, content, id, addData, variants}) =>
                             <MenuItem value={'flat off'}>flat off</MenuItem>
                         </Select>
                     </FormControl>
-                    <AiOutlineClose onClick={setShowDiscount}/>
                 </div>}
             </div>
-            {<ProductDialog openDialog={openDialog} setCloseDialog={closeDialog}/>}
+            <div className='remove-product-icon'>
+                {(rows.length > 1 || isVariant) && <AiOutlineClose onClick={handleRemoveRow} />}
+            </div>
+            {openDialog && <ProductDialog openDialog={openDialog} setCloseDialog={closeDialog}/>}
         </div>
-        <div>
-            {variants?.length > 0 
-                && <span className='show-variant-button' onClick={handleShowVariants}>Show Variants</span> 
-            }
-           {showVariant && <ProductRowContainer rows={variants}/>}
-        </div>
+        {variants?.length > 1 && <div>
+            
+            <span className='show-variant-button' onClick={handleShowVariants}>Show Variants
+             {showVariant ? <AiOutlineUp/> :<AiOutlineDown/>}</span> 
+           {showVariant && <div className='variants'> <ProductRowContainer className='variants' rows={variants} 
+           isVariant = {true} handleOnDragEnd = {handleOnDragEnd} removeRow={removeRow} /></div>}
+        </div>}
     </div>
   )
 }

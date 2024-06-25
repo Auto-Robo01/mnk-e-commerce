@@ -13,14 +13,44 @@ const ProductList = () => {
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-
+    if(result.draggableId.includes('_')) {
+      let productId = result.draggableId.split('_')[0]
+      let row = rows.findIndex((element) => element.productId == productId)
+      const newVariants = Array.from(rows[row].variants)
+      const [reorderedVariants] = newVariants.splice(result.source.index, 1)
+      newVariants.splice(result.destination.index, 0, reorderedVariants)
+      rows[row].variants = newVariants
+      setRows(Array.from(rows))
+    }
+    else{
     const newRows = Array.from(rows);
     const [reorderedItem] = newRows.splice(result.source.index, 1);
     newRows.splice(result.destination.index, 0, reorderedItem);
 
     setRows(newRows);
+    }
   };
 
+  const removeRow = (index, isVariant, id) => {
+    if(isVariant) {
+      let productId = id.split('_')[0]
+      let indexRow = rows.findIndex((element) => element.productId == productId)
+      rows[indexRow].variants.splice(index, 1)
+      updateIndex(rows, isVariant, id)
+      setRows(Array.from(rows))
+    }
+    else{
+      const newRows = Array.from(rows)
+      newRows.splice(index, 1)
+      updateIndex(newRows)
+      setRows(newRows)
+    }
+  }
+
+  const updateIndex = (rows, isVariant = false, id = '') => {
+    console.log(rows)
+  }
+ 
   const addRow = () => {
     const newRows = Array.from(rows)
     const length = newRows.length
@@ -39,10 +69,10 @@ const ProductList = () => {
     let rowToReplace = newRows.findIndex((row) => row.id == index)
     dataToAdd[0].id = String(index)
     newRows[rowToReplace] = dataToAdd[0]
-    dataToAdd = dataToAdd.shift()
+    dataToAdd.splice(0, 1)
 
-    let lastIndex = newRows.length
-    if(dataToAdd.length) {
+    let lastIndex = newRows.length + 1
+    if(dataToAdd) {
       for(let item of dataToAdd) {
         item.id = String(lastIndex)
         newRows.push(item)
@@ -51,6 +81,7 @@ const ProductList = () => {
     }
 
     setRows(newRows)
+
     
 
   }
@@ -63,7 +94,7 @@ const ProductList = () => {
             <div>Discount</div>
         </div>
         <div>
-            <ProductRowContainer rows = {rows} handleOnDragEnd={handleOnDragEnd} addData = {addData}/>
+            <ProductRowContainer rows = {rows} handleOnDragEnd={handleOnDragEnd} addData = {addData} removeRow = {removeRow}/>
         </div>
         <div className='add-product-btn'>
           {!showDiscountFields ? <Button variant='outlined' onClick={addRow}  >Add Product</Button>
