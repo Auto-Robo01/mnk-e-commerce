@@ -73,10 +73,11 @@ const ProductRow = ({
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <MdEdit className="edit-icon" onClick={handleOpenDialog} />
+                {!isVariant && <MdEdit className="edit-icon" onClick={handleOpenDialog} />}
                 </InputAdornment>
               ),
             }}
+        
           />
         </div>
         <div>

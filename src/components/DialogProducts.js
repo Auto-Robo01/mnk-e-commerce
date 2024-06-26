@@ -52,7 +52,7 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
                   </Box>
                 }
               />
-              <Box ml={3}>
+              <Box ml={3} style={{display: 'flex', flexDirection: 'column'}}>
                 {product.variants.map(variant => (
                   <FormControlLabel
                     key={variant.id}
