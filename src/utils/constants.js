@@ -8,4 +8,4 @@ export const API_OPTIONS  = {
 
 export const LOGO_IMAGE  = 'https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/bwgtd9exzknvwm9zomap'
 
-export const API_URL = 'http://stageapi.monkcommerce.app'
+export const API_URL = 'https://stageapi.monkcommerce.app'
