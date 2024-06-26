@@ -71,13 +71,15 @@ const ProductList = () => {
     newRows[rowToReplace] = dataToAdd[0]
     dataToAdd.splice(0, 1)
 
-    let lastIndex = newRows.length + 1
-    if(dataToAdd) {
-      for(let item of dataToAdd) {
-        item.id = String(lastIndex)
-        newRows.push(item)
-        lastIndex++
-      }
+    let lastIndex = +index + 1
+    for(let item of dataToAdd) {
+      item.id = String(lastIndex)
+      newRows.splice(index, 0, item)
+      index = +index + 1
+      lastIndex = +lastIndex + 1
+    }
+    for(let i = 0; i<newRows.length; i++) {
+      newRows[i].id = String(i + 1)
     }
 
     setRows(newRows)

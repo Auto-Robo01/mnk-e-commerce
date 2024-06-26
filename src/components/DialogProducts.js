@@ -7,10 +7,10 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
   const [selectedVariants, setSelectedVariants] = useState({});
 
   const handleProductChange = (productId) => {
-    const allVariantsSelected = products.find(product => product.id === productId).options.every(variant => selectedVariants[variant.id]);
+    const allVariantsSelected = products.find(product => product.id === productId).variants.every(variant => selectedVariants[variant.id]);
     const newSelectedVariants = { ...selectedVariants };
 
-    products.find(product => product.id === productId).options.forEach(variant => {
+    products.find(product => product.id === productId).variants.forEach(variant => {
       newSelectedVariants[variant.id] = !allVariantsSelected;
     });
 
@@ -32,8 +32,8 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
     <Box>
       {products.map(product => {
         console.log('yoyo', product)
-        const allVariantsSelected = product.options.every(variant => selectedVariants[variant.id]);
-        const someVariantsSelected = product.options.some(variant => selectedVariants[variant.id]);
+        const allVariantsSelected = product.variants.every(variant => selectedVariants[variant.id]);
+        const someVariantsSelected = product.variants.some(variant => selectedVariants[variant.id]);
 
         return (
           <Box key={product.id} mb={2}>
@@ -54,7 +54,7 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
                 }
               />
               <Box ml={3}>
-                {product.options.map(variant => (
+                {product.variants.map(variant => (
                   <FormControlLabel
                     key={variant.id}
                     control={
@@ -65,9 +65,7 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
                     }
                     label={
                       <Typography variant="body1">
-                        {variant.name} {
-                          variant.values.map((variant) => variant)
-                        }
+                        {variant.title} - $ {variant.price} 
                       </Typography>
                       
                       

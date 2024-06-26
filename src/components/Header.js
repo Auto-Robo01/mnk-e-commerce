@@ -1,10 +1,11 @@
 import React from 'react'
 import './Header.css'
+import { LOGO_IMAGE } from '../utils/constants'
 
 const Header = () => {
   return (
     <div className='header'>
-        <img className='header-img' src='https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/bwgtd9exzknvwm9zomap'></img>
+        <img alt='logo' className='header-img' src={LOGO_IMAGE}></img>
         <div>Monk Upsell & Cross - sell</div>
     </div>
   )

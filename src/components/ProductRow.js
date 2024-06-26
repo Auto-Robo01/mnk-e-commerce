@@ -42,7 +42,6 @@ const ProductRow = ({dragHandleProps, index, content, id, addData, variants, rem
 
   return (
     <div>
-        
         <div className='product-row'>
             <div className='drag-icon'  {...dragHandleProps}>
                 <MdDragIndicator />

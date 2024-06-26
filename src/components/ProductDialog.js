@@ -44,7 +44,7 @@ export default function ProductDialog( { openDialog, setCloseDialog }) {
     const selectedProductVariantPairs = Object.entries(selectedVariants)
       .filter(([variantId, isSelected]) => isSelected)
       .map(([variantId, isSelected]) => {
-        const variant = products.flatMap(product => product.options).find(v => v.id === parseInt(variantId));
+        const variant = products.flatMap(product => product.variants).find(v => v.id === parseInt(variantId));
         return { productId: variant.product_id, variantId: parseInt(variantId) };
       });
     console.log('Selected Product-Variant Pairs:', selectedProductVariantPairs);
@@ -67,8 +67,8 @@ export default function ProductDialog( { openDialog, setCloseDialog }) {
         objectToPush.productId = product
         objectToPush.content = productName
         groupedSelection[product].forEach((variant) => {
-            let variantSelected = products[productSelected].options.findIndex((element) => element.id == variant)
-            let variantName = products[productSelected].options[variantSelected].name + products[productSelected].options[variantSelected].values.map((element) => element)
+            let variantSelected = products[productSelected].variants.findIndex((element) => element.id == variant)
+            let variantName = products[productSelected].variants[variantSelected].title
             if(!objectToPush.variants) objectToPush.variants = []
             objectToPush.variants.push({
                 id: String(product) + '_' + String(variant) ,
