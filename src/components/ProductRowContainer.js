@@ -4,7 +4,6 @@ import ProductRow from './ProductRow';
 import './ProductRowContainer.css';
 
 const ProductRowContainer = ({ rows, handleOnDragEnd, addData, removeRow, isVariant }) => {
-    console.log('here are the rows', rows);
 
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>

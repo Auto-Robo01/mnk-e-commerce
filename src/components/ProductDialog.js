@@ -43,7 +43,6 @@ export default function ProductDialog({ openDialog, setCloseDialog }) {
   }, [searchText, products]);
 
   const handleSelectionChange = (selectedVariants) => {
-    console.log("Selected Variants:", selectedVariants);
     const selectedProductVariantPairs = Object.entries(selectedVariants)
       .filter(([variantId, isSelected]) => isSelected)
       .map(([variantId, isSelected]) => {
@@ -55,7 +54,6 @@ export default function ProductDialog({ openDialog, setCloseDialog }) {
           variantId: parseInt(variantId),
         };
       });
-    console.log("Selected Product-Variant Pairs:", selectedProductVariantPairs);
     setSelectedProducts(selectedProductVariantPairs);
   };
 
@@ -119,10 +117,6 @@ export default function ProductDialog({ openDialog, setCloseDialog }) {
             component: "form",
             onSubmit: (event) => {
               event.preventDefault();
-              const formData = new FormData(event.currentTarget);
-              const formJson = Object.fromEntries(formData.entries());
-              const email = formJson.email;
-              console.log(email);
               handleClose();
             },
           }}

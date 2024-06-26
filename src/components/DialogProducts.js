@@ -31,7 +31,6 @@ const DialogProducts = ({ products, onSelectionChange, searchText }) => {
   return (
     <Box>
       {products.map(product => {
-        console.log('yoyo', product)
         const allVariantsSelected = product.variants.every(variant => selectedVariants[variant.id]);
         const someVariantsSelected = product.variants.some(variant => selectedVariants[variant.id]);
 
